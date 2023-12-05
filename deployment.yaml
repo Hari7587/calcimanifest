@@ -3,23 +3,23 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: flaskdemo
-  name: flaskdemo
+    app: calci
+  name: calci
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: flaskdemo
+      app: calci
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: flaskdemo
+        app: calci
     spec:
       containers:
-      - image: harish7587/flask:2
-        name: flaskdemo
+      - image: harish7587/calci:latest
+        name: calci
         resources: {}
 status: {}
 ---
@@ -30,10 +30,10 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: flaskdemo
+    app: calci
   ports:
     - port: 80
-      targetPort: 5000
+      targetPort: 3000
   externalIPs:
     - 192.168.49.2    
 ---
@@ -44,13 +44,13 @@ metadata:
 
 spec:
   rules:
-  - host: "harish-suma.com"
+  - host: "calci-app.com"
     http:
       paths:
       - pathType: Prefix
         path: "/"
         backend:
           service:
-            name: flaskdemo
+            name: calci
             port:
-              number: 5000
+              number: 3000
