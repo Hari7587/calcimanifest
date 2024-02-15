@@ -18,7 +18,7 @@ spec:
         app: calci
     spec:
       containers:
-      - image: harish7587/calci:latest
+      - image: harish7587/calci:1
         name: calci
         resources: {}
 status: {}
